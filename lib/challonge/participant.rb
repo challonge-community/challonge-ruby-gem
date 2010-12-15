@@ -1,7 +1,7 @@
+# the only attributes that will save are: name, seed, challonge_username, email, misc
+
 class Challonge::Participant < Challonge::API
   self.site = "https://challonge.com/api/tournaments/:tournament_id"
-
-  # the only attributes that will save are: name, seed, challonge_username, email, misc
 
   def tournament
     Challonge::Tournament.find(self.prefix_options[:tournament_id])

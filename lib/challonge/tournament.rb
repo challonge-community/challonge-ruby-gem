@@ -23,7 +23,6 @@ class Challonge::Tournament < Challonge::API
     validated_post(:reset)
   end
 
-  # associations
   def participants(scope = :all)
     Challonge::Participant.find(scope, :params => {:tournament_id => self.id})
   end
