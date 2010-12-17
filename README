@@ -35,15 +35,8 @@ Run a basic tournament from start to finish:
   # if save returns false, view validation errors with t.errors.full_messages
 
   # add some participants
-  p = Challonge::Participant.new
-  p.name = 'Joe'
-  p.tournament = t
-  p.save
-
-  p = Challonge::Participant.new
-  p.name = 'Bob'
-  p.tournament = t
-  p.save
+  Challonge::Participant.create(:name => 'Joe', :tournament => t)
+  Challonge::Participant.create(:name => 'Bob', :tournament => t)
 
   t.publish!
   # at this point, t.live_image_url and t.full_challonge_url are available (t.reload to refetch)
@@ -55,6 +48,3 @@ Run a basic tournament from start to finish:
   m.winner_id = m.player1_id
   m.save
   # congratulations, Joe
-
-
-More to come...

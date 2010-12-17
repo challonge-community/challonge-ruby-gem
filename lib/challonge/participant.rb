@@ -3,6 +3,18 @@
 class Challonge::Participant < Challonge::API
   self.site = "https://challonge.com/api/tournaments/:tournament_id"
 
+  def initialize(attributes = {})
+    @attributes     = {}
+    @prefix_options = {}
+
+    # allow new and create to be passed a tournament or tournament_id
+    real_attributes = attributes.slice!(:tournament, :tournament_id, "tournament", "tournament_id")
+    load(real_attributes)
+    attributes.each_pair do |attr, val|
+      self.send("#{attr}=", val)
+    end
+  end
+
   def tournament
     Challonge::Tournament.find(self.prefix_options[:tournament_id])
   end
