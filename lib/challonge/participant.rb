@@ -3,9 +3,10 @@
 class Challonge::Participant < Challonge::API
   self.site = "https://challonge.com/api/tournaments/:tournament_id"
 
-  def initialize(attributes = {})
+  def initialize(attributes = {}, persisted = false)
     @attributes     = {}
     @prefix_options = {}
+    @persisted = persisted
 
     # allow new and create to be passed a tournament or tournament_id
     real_attributes = attributes.slice!(:tournament, :tournament_id, "tournament", "tournament_id")
