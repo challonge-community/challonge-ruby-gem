@@ -2,7 +2,7 @@ class Challonge
   class API < ::ActiveResource::Base
     self.user = 'your_challonge_username'
     self.password = 'your_challonge_api_key'
-
+    self.format = :xml
     @readonly_attributes = []
 
     def self.username=(uname)
