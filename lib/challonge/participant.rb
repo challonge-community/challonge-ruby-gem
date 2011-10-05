@@ -27,6 +27,10 @@ class Challonge::Participant < Challonge::API
   def randomize!
     validated_post(:randomize)
   end
+  
+  def name
+    super ? super : @attributes["challonge_username"]
+  end
 
   protected
 
