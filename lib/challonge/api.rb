@@ -2,7 +2,9 @@ class Challonge
   class API < ::ActiveResource::Base
     self.user = 'your_challonge_username'
     self.password = 'your_challonge_api_key'
-    self.format = :xml
+    self.format = :json
+    self.include_root_in_json = true
+
     @readonly_attributes = []
 
     def self.username=(uname)
@@ -32,7 +34,7 @@ class Challonge
     end
 
     def encode
-      self.class.format.encode(writable_attribute_hash, {:root => self.class.element_name})
+      {self.class.element_name => writable_attribute_hash}.to_json
     end
 
     def readonly_attributes
