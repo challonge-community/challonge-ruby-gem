@@ -38,7 +38,7 @@ Run a basic tournament from start to finish:
 t = Challonge::Tournament.new
 t.name = 'Basic Single Elim Tournament'
 t.url = 'unique_url_123'
-t.tournament_type = 'single eliination'
+t.tournament_type = 'single elimination'
 t.save
 # if save returns false, view validation errors with t.errors.full_messages
 
