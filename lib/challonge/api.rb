@@ -33,6 +33,14 @@ class Challonge
       false
     end
 
+    def self.validated_post(action, options, data)
+      self.post(action, options, data)
+      true
+    rescue ::ActiveResource::ResourceInvalid => error
+      errors.from_xml(error.response.body)
+      false
+    end
+
     def encode
       {self.class.element_name => writable_attribute_hash}.to_json
     end

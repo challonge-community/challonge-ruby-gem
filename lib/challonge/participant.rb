@@ -31,6 +31,18 @@ class Challonge::Participant < Challonge::API
   def name
     super ? super : @attributes["challonge_username"]
   end
+  
+  def self.bulk_add(tournament_id, participants_arr)
+    param_arr = []
+    participants_arr.each do |p_hash|
+      param_arr << p_hash.collect do |key, value|
+        "participants[][#{key}]=#{value}"
+      end
+    end
+    participants_param = param_arr.join('&')
+    
+    self.validated_post(:bulk_add, {tournament_id: tournament_id}, participants_param)
+  end
 
   protected
 
