@@ -11,12 +11,12 @@ class Challonge::Tournament < Challonge::API
     self.description_source = val
   end
 
-  def publish!
-    validated_post(:publish)
-  end
-
   def start!
     validated_post(:start)
+  end
+
+  def finalize!
+    validated_post(:finalize)
   end
 
   def reset!
